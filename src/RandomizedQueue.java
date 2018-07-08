@@ -38,6 +38,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }               // remove and return a random item
 
     public Item sample() {
+        checkEmpty();
         int random = StdRandom.uniform(n);
         return items[random];
     }// return a random item (but do not remove it)
