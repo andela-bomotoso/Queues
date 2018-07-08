@@ -64,9 +64,6 @@ public class Deque<Item> implements Iterable<Item> {
         Node oldFirst = first;
         first = first.next;
         n--;
-        if (n == 1) {
-            first = last;
-        }
         return oldFirst.item;
     }            // remove and return the item from the front
 
@@ -75,9 +72,6 @@ public class Deque<Item> implements Iterable<Item> {
         Node oldLast = last;
         last = last.previous;
         n--;
-        if (n == 1) {
-            first = last;
-        }
         return oldLast.item;
     }          // remove and return the item from the end
 

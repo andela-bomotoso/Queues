@@ -73,6 +73,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             temp = (Item[]) new Object[n];
             for (int i = 0; i < items.length; i++) {
                 temp[i] = items[i];
+                currentSize++;
             }
         }
 
@@ -86,6 +87,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
+
             int random = StdRandom.uniform(n);
             return items[random - 1];
         }
