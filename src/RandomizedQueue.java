@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -45,7 +44,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         checkEmpty();
         int random = StdRandom.uniform(n);
         return items[random];
-    }// return a random item (but do not remove it)
+    } // return a random item (but do not remove it)
 
 
     private void resize(int capacity) {
@@ -85,6 +84,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             for (int i = 0; i < n; i++) {
                 temp[i] = items[i];
             }
+            StdRandom.shuffle(temp);
+
         }
 
         public boolean hasNext() {
@@ -97,7 +98,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            return items[currentSize++];
+            return temp[currentSize++];
         }
     }
 

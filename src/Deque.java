@@ -68,7 +68,7 @@ public class Deque<Item> implements Iterable<Item> {
         if (first != null) {
             first.previous = null;
         }
-        if(n == 1){
+        if (n == 1) {
             last = null;
         }
         n--;
@@ -82,7 +82,7 @@ public class Deque<Item> implements Iterable<Item> {
         if (last != null) {
             last.next = null;
         }
-        if(n == 1){
+        if (n == 1) {
             first = null;
         }
         n--;
@@ -126,21 +126,21 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         Deque<Integer> deque = new Deque<Integer>();
 
-        //Add 3 items to the deque from from
+        // Add 3 items to the deque from from
         deque.addFirst(1);
         deque.addFirst(2);
         deque.addFirst(3);
 
-        //Remove 2 items from the front
-        System.out.println(deque.removeFirst()); //should return 3
-        System.out.println(deque.removeFirst()); //should return 2
+        // Remove 2 items from the front
+        System.out.println(deque.removeFirst()); // should return 3
+        System.out.println(deque.removeFirst()); // should return 2
 
-        //Add 2 items to the last
+        // Add 2 items to the last
         deque.addLast(4);
         deque.addLast(5);
 
-        //Remove 1 item from last and one from front
-        System.out.println(deque.removeLast()); //should return 5
+        // Remove 1 item from last and one from front
+        System.out.println(deque.removeLast()); // should return 5
         System.out.println(deque.removeFirst()); // should return 1
 
         System.out.println(deque.removeLast()); // should return 4
