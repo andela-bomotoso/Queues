@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -30,12 +31,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item dequeue() {
         checkEmpty();
         int random = StdRandom.uniform(n);
-        Item randomItem = items[random];
-        items[random] = items[--n];
-        items[n] = null;
+        int lastIndex = n - 1;
+        Item item = items[random];
+        items[random] = null;
+        if (random != lastIndex)
+            swapItem(random, lastIndex);
         if (n > 0 && n == items.length / 4) resize(items.length / 2);
-        return randomItem;
-    }               // remove and return a random item
+        n--;
+        return item;
+    }
 
     public Item sample() {
         checkEmpty();
@@ -43,12 +47,19 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return items[random];
     }// return a random item (but do not remove it)
 
+
     private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i < n; i++)
             copy[i] = items[i];
         items = copy;
     }
+
+    private void swapItem(int src, int dest) {
+        items[src] = items[dest];
+        items[dest] = null;
+    }
+
 
     private void checkNullity(Item item) {
         if (item == null)
@@ -71,9 +82,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         public RandomisedIterator() {
             temp = (Item[]) new Object[n];
-            for (int i = 0; i < items.length; i++) {
+            for (int i = 0; i < n; i++) {
                 temp[i] = items[i];
-                currentSize++;
             }
         }
 
@@ -87,9 +97,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-
-            int random = StdRandom.uniform(n);
-            return items[random - 1];
+            return items[currentSize++];
         }
     }
 
